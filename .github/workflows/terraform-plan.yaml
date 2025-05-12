@@ -13,11 +13,8 @@ on:
         required: true
 
 jobs:
-  terraform_apply:
+  terraform_plan:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
     steps:
       - name: checkout repo
         uses: actions/checkout@v3
