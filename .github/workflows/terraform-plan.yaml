@@ -13,27 +13,29 @@ on:
         required: true
 
 jobs:
-  Terraform_plan:
+  terraform_apply:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
-      - name: Checkout code
+      - name: checkout repo
         uses: actions/checkout@v3
+
+      - name: setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with: 
+          terraform_version: 1.5.0
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          aws_access_key_id: ${{secrets.AWS_ACCESS_KEY_ID}}
+          aws_access_key_id: ${{secrets.AWS_ACCESS_KEY_ID}}      
           aws_secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-          region: us-east-1
+          aws_region: us-east-1
 
-      - name: Terraform setup
-        uses: hashicorp/terraform-setup@v2
+      - name: Initialize Terraform
+        run: terraform init  
 
-      - name: Terraform initialize
-        run:  terraform init
-
-      - name: Terraform validate
-        run: terraform validate
-
-      - name: terraform Plan
-        run: terraform plan -out=tfplan      
+      - name: Planned terraform changes
+        run:  terraform plan      
