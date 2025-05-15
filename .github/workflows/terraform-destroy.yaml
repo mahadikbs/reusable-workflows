@@ -36,7 +36,10 @@ jobs:
           aws-region: us-east-1
 
       - name: Initialize Terraform
-        run: terraform init  
+        run: terraform init  -reconfigure
+
+      - name: Select Terraform Workspace
+        run: terraform workspace select ${{ inputs.environment }} || terraform workspace new ${{ inputs.environment }}
 
       - name: Terraform Destroy
         run:  terraform destroy -auto-approve    
