@@ -1,6 +1,10 @@
 name: Read environment 
 on:
   workflow_call:
+    inputs:
+      runner:
+        required: true
+        type: string
     outputs:
       environment: 
         value: ${{ jobs.Read_environment.outputs.environment}}
