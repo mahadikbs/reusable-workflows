@@ -30,16 +30,16 @@ jobs:
           aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
           aws-region: us-east-1 
 
-      - name: Select Terraform Workspace
-        run: terraform workspace select ${{ inputs.environment }} || terraform workspace new ${{ inputs.environment }}
-
       - name: setup Terraform
         uses: hashicorp/setup-terraform@v2
         with: 
           terraform_version: 1.5.0
 
       - name: Initialize Terraform
-        run: terraform init  
+        run: terraform init  -reconfigure
 
+      - name: Select Terraform Workspace
+        run: terraform workspace select ${{ inputs.environment }} || terraform workspace new ${{ inputs.environment }}
+        
       - name: Planned terraform changes
         run:  terraform plan      
