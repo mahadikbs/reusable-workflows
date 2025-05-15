@@ -1,0 +1,20 @@
+name: Read environment 
+on:
+  workflow_call:
+    outputs:
+      environment: 
+        value: ${{ jobs.Read_environment.outputs.environment}}
+
+jobs:
+  Read_environment:
+    runs-on: ${{inputs.runner}}
+    outputs:
+      environment: ${{ steps.get_env.outputs.terraform_env }}
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v3
+
+      - name: Read Environment 
+        id: get_env 
+        run: echo "terraform_env=$(cat .terraform/environment)" >> $GITHUB_OUTPUT
+
