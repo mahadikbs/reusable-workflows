@@ -17,7 +17,11 @@ on:
       SSH_PRIVATE_KEY:
         required: false
       SSH_PUBLIC_KEY:
-        required: false 
+        required: false
+      DOCKER_USERNAME:
+        required: false   
+      DOCKER_PASSWORD:
+        required: false  
     
 
 jobs:

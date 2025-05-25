@@ -18,6 +18,10 @@ on:
         required: false
       SSH_PUBLIC_KEY:
         required: false
+      DOCKER_USERNAME:
+        required: false   
+      DOCKER_PASSWORD:
+        required: false         
     
 
 jobs:
