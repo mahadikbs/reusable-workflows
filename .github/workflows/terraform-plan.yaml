@@ -18,9 +18,9 @@ on:
         required: false
       SSH_PUBLIC_KEY:
         required: false
-      DOCKER_USERNAME:
+      TF_VAR_DOCKER_USERNAME:
         required: false   
-      DOCKER_PASSWORD:
+      TF_VAR_DOCKER_PASSWORD:
         required: false         
     
 
