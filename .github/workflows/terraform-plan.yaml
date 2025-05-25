@@ -52,7 +52,7 @@ jobs:
           terraform_version: 1.5.0
 
       - name: Initialize Terraform
-        run: sudo terraform init  -reconfigure
+        run: terraform init  -reconfigure
 
       - name: Select Terraform Workspace
         run: terraform workspace select ${{ inputs.environment }} || terraform workspace new ${{ inputs.environment }}
